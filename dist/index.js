@@ -8334,20 +8334,25 @@ const github = __nccwpck_require__(5438);
 async function run() {
   try {
     const time = (new Date()).toTimeString();
-    console.log(time);
-    core.setOutput("time", time);
+    core.setOutput('time', time);
+    console.log('time', time);
 
     const myToken = core.getInput('github_token');
+    console.log('github_token', myToken);
 
     const context = github.context;
+    console.log('context', context);
+
     const octokit = github.getOctokit(myToken);
+    console.log('context', context);
     const response = await octokit.rest.repos.listReleases({
       owner: context.owner,
       repo: context.repo,
     });
+    console.log('response', response);
 
     const drafts = response.data.filter(rel => rel.draft);
-    console.log(drafts);
+    console.log('drafts', drafts);
 
     const latest = drafts[0];
     console.log(latest);
