@@ -8333,36 +8333,20 @@ const github = __nccwpck_require__(5438);
 
 async function run() {
   try {
-    const time = (new Date()).toTimeString();
-    core.setOutput('time', time);
-    console.log('time', time);
-
     const myToken = core.getInput('github_token');
-    console.log('github_token', myToken);
-
-    const context = github.context;
-    console.log('context', context);
-
-    const contextInfo = context.repo;
-    console.log('contextInfo', context);
-
     const octokit = github.getOctokit(myToken);
-    console.log('octokit', octokit);
 
+    const context = github.context.repo;
     const response = await octokit.rest.repos.listReleases({
-      owner: contextInfo.owner,
-      repo: contextInfo.repo,
+      owner: context.owner,
+      repo: context.repo,
     });
-    console.log('response', response);
 
     const drafts = response.data.filter(rel => rel.draft);
-    console.log('drafts', drafts);
-
     const latest = drafts[0];
-    console.log(latest);
+
     core.setOutput('id', latest.id.toString());
   } catch (error) {
-    console.log('there was an error during runtime!');
     core.setFailed(error.message);
   }
 }
