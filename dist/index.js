@@ -8334,6 +8334,7 @@ const github = __nccwpck_require__(5438);
 async function run() {
   try {
     const time = (new Date()).toTimeString();
+    console.log(time);
     core.setOutput("time", time);
 
     const myToken = core.getInput('github_token');
@@ -8352,6 +8353,7 @@ async function run() {
     console.log(latest);
     core.setOutput('id', latest.id.toString());
   } catch (error) {
+    console.log('there was an error during runtime!');
     core.setFailed(error.message);
   }
 }
