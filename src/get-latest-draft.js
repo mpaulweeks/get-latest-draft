@@ -13,11 +13,15 @@ async function run() {
     const context = github.context;
     console.log('context', context);
 
+    const contextInfo = context.repo;
+    console.log('contextInfo', context);
+
     const octokit = github.getOctokit(myToken);
-    console.log('context', context);
+    console.log('octokit', octokit);
+
     const response = await octokit.rest.repos.listReleases({
-      owner: context.owner,
-      repo: context.repo,
+      owner: contextInfo.owner,
+      repo: contextInfo.repo,
     });
     console.log('response', response);
 
