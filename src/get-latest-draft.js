@@ -4,10 +4,11 @@ const github = require('@actions/github');
 async function run() {
   try {
     const time = (new Date()).toTimeString();
-    console.log(time);
-    core.setOutput("time", time);
+    console.log('time', time);
+    core.setOutput('time', time);
 
     const myToken = core.getInput('github_token');
+    core.setOutput('github_token', myToken);
 
     const context = github.context;
     const octokit = github.getOctokit(myToken);
