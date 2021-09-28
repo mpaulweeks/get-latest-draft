@@ -1,7 +1,7 @@
 const core = require('@actions/core');
 const github = require('@actions/github');
 
-(async function run() {
+async function run() {
   try {
     const time = (new Date()).toTimeString();
     core.setOutput("time", time);
@@ -24,4 +24,6 @@ const github = require('@actions/github');
   } catch (error) {
     core.setFailed(error.message);
   }
-})();
+}
+
+module.exports = run;

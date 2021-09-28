@@ -2,7 +2,10 @@
   "name": "get-latest-draft",
   "version": "1.0.0",
   "description": "GitHub action to retrieve the latest draft release",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "ncc build src/main.js --license licenses.txt"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/mpaulweeks/get-latest-draft.git"
@@ -17,5 +20,8 @@
   "dependencies": {
     "@actions/core": "^1.6.0",
     "@actions/github": "^5.0.0"
+  },
+  "devDependencies": {
+    "@vercel/ncc": "^0.31.1"
   }
 }
