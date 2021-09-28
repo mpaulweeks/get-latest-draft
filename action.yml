@@ -1,0 +1,14 @@
+name: 'Get Latest Draft Release'
+description: 'Get information about the most recent draft release'
+inputs:
+  token:
+    required: true
+    description: "token: ${{ secrets.GITHUB_TOKEN }}"
+outputs:
+  id:
+    description: 'Release ID'
+  time:
+    description: 'For testing'
+runs:
+  using: 'node14'
+  main: 'index.js'
