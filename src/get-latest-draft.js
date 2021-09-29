@@ -1,6 +1,17 @@
 const core = require('@actions/core');
 const github = require('@actions/github');
 
+function sortArrayOfObjects(arr, cb) {
+  function compare(a, b) {
+    if (a < b) { return -1; }
+    if (a > b) { return 1; }
+    return 0;
+  }
+  const copy = arr.concat();
+  copy.sort((a, b) => compare(cb(a), cb(b)));
+  return copy;
+}
+
 async function run() {
   try {
     const myToken = core.getInput('github_token');
@@ -12,8 +23,12 @@ async function run() {
       repo: context.repo,
     });
 
+    console.log(response.data);
     const drafts = response.data.filter(rel => rel.draft);
-    const latest = drafts[0];
+    const latest = sortArrayOfObjects(drafts, d => d.created_at).reverse()[0];
+    if (latest === undefined) {
+      core.setFailed('No draft releases found');
+    }
 
     core.setOutput('id', latest.id.toString());
   } catch (error) {
