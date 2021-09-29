@@ -27,7 +27,7 @@ async function run() {
     const drafts = response.data.filter(rel => rel.draft);
     const latest = sortArrayOfObjects(drafts, d => d.created_at).reverse()[0];
     if (latest === undefined) {
-      core.setFailed('No draft releases found');
+      return core.setFailed('No draft releases found');
     }
 
     core.setOutput('id', latest.id.toString());
