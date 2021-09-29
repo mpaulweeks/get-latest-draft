@@ -14,6 +14,7 @@ jobs:
         with:
           GITHUB_TOKEN: ${{ github.token }}
 
+      # use the id to do something, like publish it!
       - name: Publish the draft
         uses: eregon/publish-release@v1
         env:

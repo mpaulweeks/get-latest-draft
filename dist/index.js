@@ -8353,7 +8353,6 @@ async function run() {
       repo: context.repo,
     });
 
-    console.log(response.data);
     const drafts = response.data.filter(rel => rel.draft);
     const latest = sortArrayOfObjects(drafts, d => d.created_at).reverse()[0];
     if (latest === undefined) {
