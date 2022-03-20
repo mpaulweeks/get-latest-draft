@@ -2,6 +2,12 @@
 
 GitHub action to retrieve the latest draft release
 
+## outputs
+
+| name | description |
+| -------- | ----------- |
+| `id`     | The GitHub release id |
+
 ## Example usage
 
 ```yaml
